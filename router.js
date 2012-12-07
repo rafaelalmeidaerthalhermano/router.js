@@ -14,6 +14,13 @@ var Router = new Class(function (callback) {
     var routes = [],
         match;
 
+    /* @attribute context
+     *
+     * @author: Rafael Almeida Erthal Hermano
+     * @description: contexto em que os callback são executados
+     */
+    this.context = new (new Class(function () {})) ();
+
     /* @function match
      *
      * @author: Rafael Almeida Erthal Hermano
@@ -91,7 +98,7 @@ var Router = new Class(function (callback) {
 
         for (i = 0; i < routes.length; i = i + 1) {
             if (match(routes[i].url, url)) {
-                routes[i].callback.apply({});
+                routes[i].callback.apply(this.context);
             }
         }
     };
