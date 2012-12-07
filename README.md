@@ -40,3 +40,7 @@ Router.extend(attributes)
 ```js
 Router.instaceOf(Class)
 ```
+
+```js
+Router.context.extend(attributes)
+```
