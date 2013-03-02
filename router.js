@@ -12,14 +12,9 @@ var Router = new Class(function (callback) {
     }
 
     var routes = [],
-        match;
-
-    /* @attribute context
-     *
-     * @author: Rafael Almeida Erthal Hermano
-     * @description: contexto em que os callback são executados
-     */
-    this.context = new (new Class(function () {})) ();
+        match,
+        execute,
+        that = this;
 
     /* @function match
      *
@@ -60,6 +55,47 @@ var Router = new Class(function (callback) {
         return true;
     };
 
+    /* @function execute
+     *
+     * @author: Rafael Almeida Erthal Hermano
+     * @description: Executa uma rota em um contexto
+     * 
+     * @param route: tupla mascara callback
+     * @param url: url
+     */
+    execute = function (route, url) {
+        route.callback.apply(new that.Context(route.url, url));
+    };
+
+    /* @class Context
+     *
+     * @author: Rafael Almeida Erthal Hermano
+     * @description: contexto em que os callback são executados
+     */
+    this.Context = new Class(function (mask, url) {
+        /* @function mask
+         *
+         * @author: Rafael Almeida Erthal Hermano
+         * @description: retorna a mascara da url
+         *
+         * @return mascara
+         */
+        this.mask = function () {
+            return mask;
+        };
+
+        /* @function url
+         *
+         * @author: Rafael Almeida Erthal Hermano
+         * @description: retorna a url atual
+         *
+         * @return url
+         */
+        this.url = function () {
+            return url;
+        }
+    });
+
     /* @function track
      *
      * @author: Rafael Almeida Erthal Hermano
@@ -79,29 +115,28 @@ var Router = new Class(function (callback) {
         }
 
         routes.push({url : url, callback : callback});
+
+        if (match(url, document.location.pathname)) {
+            execute({url : url, callback : callback}, document.location.pathname);
+        }
     };
 
-    /* @function dispatch
-     *
-     * @author: Rafael Almeida Erthal Hermano
-     * @description: executa função que bate com a rota
-     * 
-     * @param url: rota
-     */
-    this.dispatch = function (url) {
-
-        if (!url || url.constructor !== String) {
-            throw 'Url must be a string';
-        }
-
-        var i;
-
-        for (i = 0; i < routes.length; i = i + 1) {
-            if (match(routes[i].url, url)) {
-                routes[i].callback.apply(this.context);
+    /* Criando um listenner para as ancoras da pagina */
+    document.addEventListener('click', function (evt) {
+        var href = (evt && evt.target && evt.target.getAttribute) ? evt.target.getAttribute('href') : null,
+            i;
+        if (href) {
+            for (i in routes) {
+                if (match(routes[i].url, href)) {
+                    evt.preventDefault();
+                    execute(routes[i], href);
+                    if (history && history.pushState) {
+                        history.pushState(null, document.title, href);
+                    }
+                }
             }
         }
-    };
+    });
 
     callback.apply(this);
 });
