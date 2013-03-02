@@ -1,7 +1,7 @@
 Router.js
 ===============================
 
-This project uses the [link Class.js](http://github.com/rafaelalmeidaerthalhermano/class.js) project
+This project uses the [Class.js](http://github.com/rafaelalmeidaerthalhermano/class.js) project
 
 ## Router Object
 
