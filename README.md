@@ -6,7 +6,7 @@ Usage examples:
 ```js
 var router = new Router(function () {
     this.track('...', function () {/*...*/});
-    this.track('...', function () {/*...*/});
+    this.track('...',  function () {/*...*/});
     this.track('...', function () {/*...*/});
     /*...*/
     
