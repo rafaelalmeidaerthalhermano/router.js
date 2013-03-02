@@ -1,46 +1,43 @@
 Router.js
 ===============================
 
-Usage examples:
+## Router Object
+
+lorem ipsum
+
+### Track
+
+lorem ipsum
+
+Usage example:
 
 ```js
-var router = new Router(function () {
-    this.track('...', function () {/*...*/});
-    this.track('...',  function () {/*...*/});
-    this.track('...', function () {/*...*/});
-    /*...*/
-    
-    this.dispatch('...');
-});
 
-router.track('...', function () {/*...*/});
-router.track('...', function () {/*...*/});
-router.track('...', function () {/*...*/});
-/*...*/
-
-router.dispatch('...');
-```
-* * *
-###References:
-
-#####Router Object
-
-```js
-Router.track(url, callback);
 ```
 
-```js
-Router.dispatch(url);
-```
+## Context Object
+
+lorem ipsum
+
+### Mask
+
+Usage example:
 
 ```js
-Router.extend(attributes)
 ```
 
-```js
-Router.instaceOf(Class)
-```
+### Url
+
+Usage example:
 
 ```js
-Router.context.extend(attributes)
+```
+
+### Extend
+
+lorem ipsum
+
+Usage example:
+
+```js
 ```
