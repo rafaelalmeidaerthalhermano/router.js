@@ -3,7 +3,7 @@ Router.js
 
 ## Router Object
 
-lorem ipsum
+The router controls all system routes to structure the program execution
 
 ### Track
 
