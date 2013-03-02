@@ -12,7 +12,11 @@ The method associates a route to a callback when the url is compatible with the 
 Usage example:
 
 ```js
-
+var router = new Router(function () {
+    this.track('/animals', function () {
+        console.log('animals route');
+    });
+});
 ```
 
 ## Context Object
@@ -24,6 +28,11 @@ The context object is where the callbacks are executed.
 Usage example:
 
 ```js
+var router = new Router(function () {
+    this.track('/animal/:id', function () {
+        console.log(this.mask()); // => /animal/:id
+    });
+});
 ```
 
 ### Url
@@ -31,6 +40,11 @@ Usage example:
 Usage example:
 
 ```js
+var router = new Router(function () {
+    this.track('/animal/:id', function () {
+        console.log(this.url()); // => /animal/dog
+    });
+});
 ```
 
 ### Extend
@@ -40,4 +54,15 @@ Serves to generate plugins for the router, it extends new functionalities for co
 Usage example:
 
 ```js
+Router.Context.extend({
+   alert : function (message) {
+       alert(message);
+   }
+});
+
+var router = new Router(function () {
+    this.track('/animal/:id', function () {
+        this.alert('Hi') // => Hi
+    });
+});
 ```
