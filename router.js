@@ -81,37 +81,8 @@ var Router = new Class(function (callback) {
      * @param url: url
      */
     execute = function (route, url) {
-        route.callback.apply(new that.Context(route.url, url));
+        route.callback.apply(new Router.Context(route.url, url));
     };
-
-    /* @class Context
-     *
-     * @author: Rafael Almeida Erthal Hermano
-     * @description: contexto em que os callback são executados
-     */
-    this.Context = new Class(function (mask, url) {
-        /* @function mask
-         *
-         * @author: Rafael Almeida Erthal Hermano
-         * @description: retorna a mascara da url
-         *
-         * @return mascara
-         */
-        this.mask = function () {
-            return mask;
-        };
-
-        /* @function url
-         *
-         * @author: Rafael Almeida Erthal Hermano
-         * @description: retorna a url atual
-         *
-         * @return url
-         */
-        this.url = function () {
-            return url;
-        }
-    });
 
     /* @function track
      *
@@ -156,4 +127,33 @@ var Router = new Class(function (callback) {
     });
 
     callback.apply(this);
+});
+
+/* @class Context
+ *
+ * @author: Rafael Almeida Erthal Hermano
+ * @description: contexto em que os callback são executados
+ */
+Router.Context = new Class(function (mask, url) {
+    /* @function mask
+     *
+     * @author: Rafael Almeida Erthal Hermano
+     * @description: retorna a mascara da url
+     *
+     * @return mascara
+     */
+    this.mask = function () {
+        return mask;
+    };
+
+    /* @function url
+     *
+     * @author: Rafael Almeida Erthal Hermano
+     * @description: retorna a url atual
+     *
+     * @return url
+     */
+    this.url = function () {
+        return url;
+    }
 });
