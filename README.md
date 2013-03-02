@@ -1,6 +1,8 @@
 Router.js
 ===============================
 
+This project uses the [link Class.js](http://github.com/rafaelalmeidaerthalhermano/class.js) project
+
 ## Router Object
 
 The router controls all system routes to structure the program execution
