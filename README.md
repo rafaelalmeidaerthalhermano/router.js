@@ -68,3 +68,7 @@ var router = new Router(function () {
     });
 });
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/rafaelalmeidaerthalhermano/router.js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
